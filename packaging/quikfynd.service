@@ -1,0 +1,12 @@
+[Unit]
+Description=QuikFynd
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/clearos/apps/quikfynd/libraries/QuikFynd/QuikFynd
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

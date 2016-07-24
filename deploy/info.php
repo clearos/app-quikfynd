@@ -4,12 +4,12 @@
 // General information
 ///////////////////////////////////////////////////////////////////////////// 
 $app['basename'] = 'quikfynd';
-$app['version'] = '1.0.0';
+$app['version'] = '2.0.1';
 $app['release'] = '1';
 $app['vendor'] = 'QuikFynd';
 $app['packager'] = 'QuikFynd';
-$app['license'] = 'GPLv3';
-$app['license_core'] = 'LGPLv3';
+$app['license'] = 'Proprietary';
+$app['license_core'] = 'Proprietary';
 $app['description'] = lang('quikfynd_app_description');
 $app['tooltip'] = array(
     lang('quikfynd_tooltip_1'),

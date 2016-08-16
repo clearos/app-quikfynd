@@ -48,12 +48,12 @@ clearos_load_language('quikfynd');
 use \clearos\apps\base\Configuration_File as Configuration_File;
 use \clearos\apps\base\Daemon as Daemon;
 use \clearos\apps\base\File as File;
-use \clearos\apps\incoming_firewall\Incoming as Incoming;
+use \clearos\apps\network\Network_Utils as Network_Utils;
 
 clearos_load_library('base/Configuration_File');
 clearos_load_library('base/Daemon');
 clearos_load_library('base/File');
-clearos_load_library('incoming_firewall/Incoming');
+clearos_load_library('network/Network_Utils');
 
 // Exceptions
 //-----------
@@ -106,52 +106,49 @@ class QuikFynd extends Daemon
     function __construct()
     {
         clearos_profile(__METHOD__, __LINE__);
+        clearos_log('quikfynd', 'Constructed');
 
         parent::__construct('quikfynd');
     }
 
     /**
-     * Get example.
+     * Returns port.
+     *
+     * @return integer port number
+     * @throws Engine_Exception
      */
 
-    public function get_example()
+    public function get_port()
     {
-/*
+        clearos_profile(__METHOD__, __LINE__);
+        clearos_log('quikfynd', 'get_port');
+
         if (! $this->is_loaded)
             $this->_load_config();
 
-        if (!isset($this->config["example"]))
-            return "Default";
-
-        return $this->config["example"];
-*/
-return 'jo';
+        if (isset($this->config['BasePort']))
+            return $this->config['BasePort'];
+        else
+            return self::DEFAULT_PORT;
     }
 
     /**
-     * Set example.
+     * Sets port.
      *
-     * String $example example
+     * @param integer $port port
+     *
+     * @return void
+     * @throws Engine_Exception, Validation_Exception
      */
 
-    public function set_example($example)
+    public function set_port($port)
     {
-        $this->set_parameter('example', $example);
-    }
+        clearos_profile(__METHOD__, __LINE__);
+        clearos_log('quikfynd', 'set_port: '.$port);
 
-    /**
-     * Sanity check firewall settings.
-     */
+        Validation_Exception::is_valid($this->validate_port($port));
 
-    public function sanity_check_fw()
-    {
-        $incoming = new Incoming();
-        
-        foreach ($incoming_allow as $info) {
-            if ($info['port'] == "443");
-                return NULL;
-        }
-        return lang('quikfynd_sanity_incoming');
+        $this->_set_parameter('BasePort', $port);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -159,21 +156,22 @@ return 'jo';
     ///////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Validation routine example.
+     * Validates port.
      *
-     * @param string $example example
+     * @param integer $port port
      *
-     * @return mixed void if example is valid, errmsg otherwise
+     * @return string error message if port is invalid
      */
 
-    function validate_example($example)
+    public function validate_port($port)
     {
         clearos_profile(__METHOD__, __LINE__);
+        clearos_log('quikfynd', 'validate_port: '.$port);
 
-        if (FALSE)
-            return lang('quikfynd_example_invalid');
+        if (! Network_Utils::is_valid_port($port)) {
+            return lang('network_port_invalid');
+        }
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // P R I V A T E   M E T H O D S

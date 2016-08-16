@@ -20,8 +20,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
+// B O O T S T R A P
+///////////////////////////////////////////////////////////////////////////////
+
+$bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/clearos/framework/shared';
+require_once $bootstrap . '/bootstrap.php';
+
+///////////////////////////////////////////////////////////////////////////////
 // D E P E N D E N C I E S
 ///////////////////////////////////////////////////////////////////////////////
+
+require clearos_app_base('network') . '/controllers/network_check.php';
 
 ///////////////////////////////////////////////////////////////////////////////
 // C L A S S
@@ -39,11 +48,20 @@
  * @link       http://www.quikfynd.com/wddownloads/
  */
 
-class QuikFynd extends ClearOS_Controller
+class Network extends Network_Check
 {
+    /**
+     * Network check constructor.
+     */
+
+    function __construct()
+    {
+        clearos_log('quikfynd-network', 'Constructed');
+        parent::__construct('quikfynd');
+    }
 
     /**
-     * QuikFynd default controller
+     * Network check view.
      *
      * @return view
      */
@@ -52,15 +70,11 @@ class QuikFynd extends ClearOS_Controller
     {
         // Load dependencies
         //------------------
+        clearos_log('quikfynd-network', 'index');
 
         $this->load->library('quikfynd/QuikFynd');
-        $this->lang->load('quikfynd');
-
-        // Load views
-        //-----------
-
-        $views = array('quikfynd/server', 'quikfynd/network', 'quikfynd/settings');
-
-        $this->page->view_forms($views, lang('quikfynd_app_name'));
+        $port = $this->quikfynd->get_port();
+        parent::index('TCP', $port);
+        parent::index('TCP', $port+1);
     }
 }

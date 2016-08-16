@@ -21,7 +21,7 @@ $app['tooltip'] = array(
 /////////////////////////////////////////////////////////////////////////////
 
 $app['name'] = lang('quikfynd_app_name');
-$app['category'] = lang('base_category_server');
+$app['category'] = lang('base_category_system');
 $app['subcategory'] = lang('base_subcategory_file');
 
 /////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,12 @@ $app['controllers']['quikfynd']['title'] = $app['name'];
 // Packaging
 /////////////////////////////////////////////////////////////////////////////
 
+$app['requires'] = array(
+    'app-network',
+);
+
 $app['core_requires'] = array(
+    # app-network-core >= 1:1.4.5', This line crashes webconfig! Commenting for now.
     # 'quikfynd' TODO - when binary packaging is complete, add dependency
 );
 

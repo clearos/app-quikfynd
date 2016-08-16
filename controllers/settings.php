@@ -42,63 +42,68 @@
 class Settings extends ClearOS_Controller
 {
     /**
-     * Index.
+     * Settings controller.
      */
 
     function index()
     {
-        // Load libraries
-        //---------------
-
-        $this->load->library('quikfynd/QuikFynd');
-
-        // Load view data
-        //---------------
-
-        $data = array(
-            'edit' => FALSE,
-        );
-
-        $data['sanity_check_fw'] = $this->quikfynd->sanity_check_fw();
-
-        $this->page->view_form('quikfynd/settings', $data, lang('base_settings'));
+        $this->_view_edit('view');
     }
 
     /**
-     * Edit settings view.
+     * Settings controller.
      *
      * @return view
      */
 
     function edit()
     {
-        // Load libraries
-        //---------------
+        $this->_view_edit('edit');
+    }
 
+    function _view_edit($form_type = 'view')
+    {
+        // Load dependencies
+        //------------------
+
+        $this->lang->load('base');
         $this->load->library('quikfynd/QuikFynd');
 
         // Set validation rules
         //---------------------
-       
-        $this->form_validation->set_policy('mode', 'quikfynd/QuikFynd', 'validate_example');
+
+        $this->form_validation->set_policy('port', 'quikfynd/QuikFynd', 'validate_port', TRUE);
         $form_ok = $this->form_validation->run();
 
         // Handle form submit
         //-------------------
-        if ($form_ok) {
+
+        //if ($this->input->post('submit') && $form_ok) {
+        if ($this->input->post('submit')) {
             try {
-                $this->quikfynd->set_example($this->input->post('example'));
+                $this->quikfynd->set_port($this->input->post('port'));
+                $this->quikfynd->reset(TRUE);
+                $this->page->set_status_updated();
                 redirect('/quikfynd');
+            } catch (Engine_Exception $e) {
+                $this->page->view_exception($e);
                 return;
-            } catch (Exception $e) {
-                $this->page->set_message(clearos_exception_message($e), 'warning');
             }
         }
 
-        $data = array(
-            'edit' => TRUE,
-            'example' => $this->quikfynd->get_example()
-        );
+        // Load view data
+        //---------------
+
+        try {
+            $data['form_type'] = $form_type;
+            $data['port'] = $this->quikfynd->get_port();
+        } catch (Exception $e) {
+            $this->page->view_exception($e);
+            return;
+        }
+
+        // Load views
+        //-----------
 
         $this->page->view_form('quikfynd/settings', $data, lang('base_settings'));
     }

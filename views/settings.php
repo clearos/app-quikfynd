@@ -24,44 +24,35 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 $this->lang->load('base');
-$this->lang->load('quikfynd');
 $this->lang->load('network');
-
-if ($sanity_check_fw != NULL)
-    echo infobox_warning(
-        lang('base_warning'),
-        "<div>" . $sanity_check_fw . "</div>"
-    );
-///////////////////////////////////////////////////////////////////////////////
-// Form open
-///////////////////////////////////////////////////////////////////////////////
-
-echo form_open('quikfynd/settings/edit');
-echo form_header(lang('base_settings'));
+$this->lang->load('quikfynd');
 
 ///////////////////////////////////////////////////////////////////////////////
-// Form fields and buttons
+// Form type handling
 ///////////////////////////////////////////////////////////////////////////////
-
-if ($edit) {
+if ($form_type === 'edit') {
     $read_only = FALSE;
     $buttons = array(
         form_submit_update('submit'),
-        anchor_cancel('/app/quikfynd')
+        anchor_cancel('/app/quikfynd/settings')
     );
 } else {
     $read_only = TRUE;
     $buttons = array(
-        anchor_edit('/app/quikfynd/settings/edit'),
+        anchor_edit('/app/quikfynd/settings/edit')
     );
 }
 
-echo field_input('example', $example, lang('quikfynd_example'), $read_only);
-echo field_button_set($buttons);
 
 ///////////////////////////////////////////////////////////////////////////////
-// Form close
+// Form
 ///////////////////////////////////////////////////////////////////////////////
+
+echo form_open('quikfynd/settings');
+echo form_header(lang('base_settings'));
+
+echo field_input('port', $port, lang('quikfynd_port'), $read_only);
+echo field_button_set($buttons);
 
 echo form_footer();
 echo form_close();

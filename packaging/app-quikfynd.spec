@@ -1,18 +1,17 @@
 %global __os_install_post %{nil}
-%define _binaries_in_noarch_packages_terminate_build 0
 %define  debug_package %{nil}
 
 Name: app-quikfynd
 Epoch: 1
 Version: 2.0.1
 Release: 1%{dist}
-Summary: **quikfynd_app_name**
+Summary: Unified search for all your storage
 License: Proprietary
 Group: ClearOS/Apps
 Packager: QuikFynd
 Vendor: QuikFynd
 Source: %{name}-%{version}.tar.gz
-Buildarch: noarch
+Buildarch: x86_64
 Requires: %{name}-core = 1:%{version}-%{release}
 Requires: app-base
 BuildRequires:  systemd
@@ -22,17 +21,22 @@ Requires(postun): systemd
 AutoReqProv: 0
 
 %description
-**quikfynd_app_description**
+QuikFynd intelligently organizes data on your server
+and connected accounts, so that you can find your files
+quickly using its full text search capabilities.
 
 %package core
-Summary: **quikfynd_app_name** - Core
+Summary: Unified search for all your storage - Core
 License: Proprietary
-Group: ClearOS/Apps
+Group: ClearOS/Libraries
 Requires: app-base-core
+Requires: quikfynd >= 2.0.1
 AutoReqProv: 0
 
 %description core
-**quikfynd_app_description**
+QuikFynd intelligently organizes data on your server
+and connected accounts, so that you can find your files
+quickly using its full text search capabilities.
 
 This package provides the core API and libraries.
 

@@ -21,6 +21,7 @@ $configlet = array(
 	'title' => lang('quikfynd_app_name'),
 	'package' => 'quikfynd',
 	'process_name' => 'QuikFynd',
-	'pid_file' => '/var/lib/run/quikfynd.pid',
+	'pid_file' => '/var/run/quikfynd.pid',
+	'url' => '/app/quikfynd',
 	'reloadable' => FALSE,
 );

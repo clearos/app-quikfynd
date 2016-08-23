@@ -7,6 +7,7 @@ Type=simple
 User=root
 WorkingDirectory=/usr/share/quikfynd/QuikFynd/
 ExecStart=/usr/share/quikfynd/QuikFynd/QuikFynd
+PIDFile=/var/run/quikfynd.pid
 Restart=on-abort
 
 [Install]

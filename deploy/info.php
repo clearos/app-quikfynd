@@ -21,7 +21,7 @@ $app['tooltip'] = array(
 /////////////////////////////////////////////////////////////////////////////
 
 $app['name'] = lang('quikfynd_app_name');
-$app['category'] = lang('base_category_system');
+$app['category'] = lang('base_category_server');
 $app['subcategory'] = lang('base_subcategory_file');
 
 /////////////////////////////////////////////////////////////////////////////

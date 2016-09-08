@@ -50,7 +50,7 @@ cp -r * %{buildroot}/usr/clearos/apps/quikfynd/
 
 install -D -m 0644 packaging/quikfynd.conf %{buildroot}/etc/clearos/quikfynd.conf
 install -D -m 0644 packaging/quikfynd.php %{buildroot}/var/clearos/base/daemon/quikfynd.php
-install -D -m 0644 packaging/quikfynd.service %{buildroot}/lib/systemd/system/quikfynd.service
+install -D -m 0644 packaging/quikfynd.service %{buildroot}/usr/lib/systemd/system/quikfynd.service
 
 %post
 logger -p local6.notice -t installer 'app-quikfynd - installing'
@@ -101,4 +101,4 @@ exit 0
 /usr/clearos/apps/quikfynd/libraries
 %attr(0644,webconfig,webconfig) %config(noreplace) /etc/clearos/quikfynd.conf
 /var/clearos/base/daemon/quikfynd.php
-/lib/systemd/system/quikfynd.service
+/usr/lib/systemd/system/quikfynd.service

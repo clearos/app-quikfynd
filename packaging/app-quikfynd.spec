@@ -3,7 +3,7 @@
 
 Name: app-quikfynd
 Epoch: 1
-Version: 2.0.1
+Version: 2.0.2
 Release: 1%{dist}
 Summary: Unified search for all your storage
 License: Proprietary

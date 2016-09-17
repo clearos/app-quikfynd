@@ -9,3 +9,4 @@ $lang['quikfynd_tooltip_1'] = 'You can start QuikFynd from your browser using th
 $lang['quikfynd_tooltip_2'] = 'QuikFynd can also index your cloud drives such as DropBox, Google Drive and OneDrive. Launch QuikFynd and connect these accounts from Menu > Settings > Add Cloud Connectors.';
 $lang['quikfynd_launch_button'] = 'Open QuikFynd';
 $lang['quikfynd_launch_title'] = 'Launch';
+$lang['quikfynd_settings_title'] = 'Network Configuration';

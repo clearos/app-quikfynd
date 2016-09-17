@@ -49,7 +49,7 @@ if ($form_type === 'edit') {
 ///////////////////////////////////////////////////////////////////////////////
 
 echo form_open('quikfynd/settings');
-echo form_header(lang('base_settings'));
+echo form_header(lang('quikfynd_settings_title'));
 
 echo field_input('port', $port, lang('quikfynd_port'), $read_only);
 echo field_button_set($buttons);

@@ -112,6 +112,18 @@ class QuikFynd extends Daemon
     }
 
     /**
+     * Returns URL to launch QuikFynd server.
+     *
+     * @return URL to launch QuikFynd server.
+     */
+    public function get_app_url()
+    {
+        $url = explode(':', base_url());
+        $url = sprintf('http://%s:%d/app/index.html', substr($url[1], 2), $this->get_port());
+        return $url;
+    }
+
+    /**
      * Returns port.
      *
      * @return integer port number

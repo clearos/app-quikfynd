@@ -1,7 +1,7 @@
 <?php
 
 /**
- * QuikFynd controller.
+ * QuikFynd settings controller.
  *
  * @category   apps
  * @package    quikfynd
@@ -28,7 +28,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 /**
- * QuikFynd controller.
+ * QuikFynd settings controller.
  *
  * @category   apps
  * @package    quikfynd
@@ -39,28 +39,29 @@
  * @link       http://www.quikfynd.com/wddownloads/
  */
 
-class QuikFynd extends ClearOS_Controller
+class Launch extends ClearOS_Controller
 {
-
     /**
-     * QuikFynd default controller
-     *
-     * @return view
+     * Launch controller.
      */
 
     function index()
     {
-        // Load dependencies
-        //------------------
+        // Load view data
+        //---------------
 
-        $this->load->library('quikfynd/QuikFynd');
-        $this->lang->load('quikfynd');
+        try {
+            $data['url'] = $this->quikfynd->get_app_url();
+        } catch (Exception $e) {
+            $this->page->view_exception($e);
+            return;
+        }
 
         // Load views
         //-----------
 
-        $views = array('quikfynd/server', 'quikfynd/network', 'quikfynd/launch', 'quikfynd/settings');
-
-        $this->page->view_forms($views, lang('quikfynd_app_name'));
+        $this->page->view_form('quikfynd/launch', $data, lang('quikfynd_launch_title'));
     }
 }
+
+// vi: expandtab shiftwidth=4 softtabstop=4 tabstop=4

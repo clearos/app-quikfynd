@@ -3,7 +3,7 @@
 
 Name: app-quikfynd
 Epoch: 1
-Version: 2.0.2
+Version: 2.9.7
 Release: 1%{dist}
 Summary: Unified search for all your storage
 License: Proprietary
@@ -30,7 +30,7 @@ Summary: Unified search for all your storage - Core
 License: Proprietary
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: quikfynd >= 2.0.1
+Requires: quikfynd >= 2.9.7
 AutoReqProv: 0
 
 %description core
@@ -46,11 +46,19 @@ This package provides the core API and libraries.
 
 %install
 mkdir -p -m 755 %{buildroot}/usr/clearos/apps/quikfynd
+
+# Create mount root
+if [ ! -d /mnt/qfmounts ]; then
+    mkdir -p -m 755 /mnt/qfmounts
+fi
+
 cp -r * %{buildroot}/usr/clearos/apps/quikfynd/
 
 install -D -m 0644 packaging/quikfynd.conf %{buildroot}/etc/clearos/quikfynd.conf
 install -D -m 0644 packaging/quikfynd.php %{buildroot}/var/clearos/base/daemon/quikfynd.php
 install -D -m 0644 packaging/quikfynd.service %{buildroot}/usr/lib/systemd/system/quikfynd.service
+
+mkdir -p -m 755 /mnt/qfmounts
 
 %post
 logger -p local6.notice -t installer 'app-quikfynd - installing'
@@ -74,6 +82,15 @@ exit 0
 if [ $1 -eq 0 ]; then
     logger -p local6.notice -t installer 'app-quikfynd - uninstalling'
 fi
+
+# Unmount all the current mounts
+for dir in /mnt/qfmounts/*
+do
+    if [ -d $dir ]; then
+        umount -l -f $dir
+    fi
+done
+
 
 %preun core
 /usr/bin/systemctl stop quikfynd.service -q

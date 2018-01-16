@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/usr/clearos/apps/quikfynd/QuikFynd/
-ExecStart=/usr/clearos/apps/quikfynd/QuikFynd/QuikFynd
+WorkingDirectory=/usr/share/quikfynd/QuikFynd/
+ExecStart=/usr/share/quikfynd/QuikFynd/QuikFynd
 PIDFile=/var/run/quikfynd.pid
 Restart=on-abort
 

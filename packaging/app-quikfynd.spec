@@ -31,9 +31,6 @@ License: Proprietary
 Group: ClearOS/Libraries
 Requires: app-base-core
 Requires: quikfynd >= 2.9.7
-Requires: scipy
-Requires: nfs-utils
-Requires: cifs-utils
 AutoReqProv: 0
 
 %description core
@@ -87,7 +84,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 # Unmount all the current mounts
-for dir in /mnt/qfmounts/* /
+for dir in /mnt/qfmounts/*
 do
     if [ -d $dir ]; then
         umount -l -f $dir

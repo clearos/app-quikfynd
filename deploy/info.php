@@ -4,7 +4,7 @@
 // General information
 ///////////////////////////////////////////////////////////////////////////// 
 $app['basename'] = 'quikfynd';
-$app['version'] = '2.9.7';
+$app['version'] = '2.9.8';
 $app['release'] = '1';
 $app['vendor'] = 'QuikFynd';
 $app['packager'] = 'QuikFynd';
@@ -39,8 +39,15 @@ $app['requires'] = array(
 );
 
 $app['core_requires'] = array(
-    # app-network-core >= 1:1.4.5', This line crashes webconfig! Commenting for now.
-    # 'quikfynd' TODO - when binary packaging is complete, add dependency
+     'quikfynd'
+);
+
+$app['core_directory_manifest'] = array(
+    '/mnt/qfmounts' => array(
+        'mode' => '0755',
+        'owner' => 'root',
+        'group' => 'root',
+    ),
 );
 
 $app['core_file_manifest'] = array(

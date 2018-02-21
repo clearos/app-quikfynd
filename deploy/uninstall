@@ -1,0 +1,8 @@
+#!/bin/sh
+
+for dir in /mnt/qfmounts/*
+do
+    if [ -d $dir ]; then
+        umount -l -f $dir
+    fi
+done

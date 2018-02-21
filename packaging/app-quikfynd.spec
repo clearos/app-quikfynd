@@ -3,7 +3,7 @@
 
 Name: app-quikfynd
 Epoch: 1
-Version: 2.9.7
+Version: 3.0.4
 Release: 1%{dist}
 Summary: Unified search for all your storage
 License: Proprietary
@@ -30,7 +30,7 @@ Summary: Unified search for all your storage - Core
 License: Proprietary
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: quikfynd >= 2.9.7
+Requires: quikfynd >= 3.0.4
 AutoReqProv: 0
 
 %description core

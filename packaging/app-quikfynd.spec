@@ -3,7 +3,7 @@ Name: app-quikfynd
 Epoch: 1
 Version: 3.0.5
 Release: 1%{dist}
-Summary: **quikfynd_app_name**
+Summary: QuikFynd
 License: Proprietary
 Group: ClearOS/Apps
 Packager: QuikFynd
@@ -15,17 +15,17 @@ Requires: app-base
 Requires: app-network
 
 %description
-**quikfynd_app_description**
+QuikFynd intelligently organizes data on your server and connected accounts, so that you can find your files quickly using its full text search capabilities. 
 
 %package core
-Summary: **quikfynd_app_name** - Core
+Summary: QuikFynd - Core
 License: Proprietary
 Group: ClearOS/Libraries
 Requires: app-base-core
 Requires: quikfynd
 
 %description core
-**quikfynd_app_description**
+QuikFynd intelligently organizes data on your server and connected accounts, so that you can find your files quickly using its full text search capabilities. 
 
 This package provides the core API and libraries.
 

@@ -4,7 +4,7 @@
 // General information
 ///////////////////////////////////////////////////////////////////////////// 
 $app['basename'] = 'quikfynd';
-$app['version'] = '3.0.5';
+$app['version'] = '3.0.6';
 $app['release'] = '1';
 $app['vendor'] = 'QuikFynd';
 $app['packager'] = 'QuikFynd';

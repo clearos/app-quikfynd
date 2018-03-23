@@ -1,7 +1,7 @@
 
 Name: app-quikfynd
 Epoch: 1
-Version: 3.0.5
+Version: 3.0.6
 Release: 1%{dist}
 Summary: QuikFynd
 License: Proprietary
@@ -15,7 +15,7 @@ Requires: app-base
 Requires: app-network
 
 %description
-QuikFynd intelligently organizes data on your server and connected accounts, so that you can find your files quickly using its full text search capabilities. 
+QuikFynd intelligently organizes data on your server and connected accounts, so that you can find your files quickly using its full text search capabilities.
 
 %package core
 Summary: QuikFynd - Core
@@ -25,7 +25,7 @@ Requires: app-base-core
 Requires: quikfynd
 
 %description core
-QuikFynd intelligently organizes data on your server and connected accounts, so that you can find your files quickly using its full text search capabilities. 
+QuikFynd intelligently organizes data on your server and connected accounts, so that you can find your files quickly using its full text search capabilities.
 
 This package provides the core API and libraries.
 
